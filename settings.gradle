@@ -1,2 +1,2 @@
-include ':app', ':MYPlayer'
+include ':app', ':library'
 rootProject.name='App'
