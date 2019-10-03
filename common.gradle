@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        multiDexEnabled true
+
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation rootProject.ext.dependencies["junit"]
+    implementation rootProject.ext.dependencies["runner"]
+    implementation rootProject.ext.dependencies["espresso-core"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["okhttp3-urlconnection"]
+
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+}
